@@ -1,13 +1,25 @@
 import React, { useState, useEffect } from "react";
+import CoinInfoTab from "./CoinInfoTab/CoinInfoTab";
 import CoinList from "./CoinList/CoinList";
+import Landing from "./Landing";
+import MainPageCarousel from "./MainPageCaro/MainPageCarousel";
 import Trending from "./Trending/Trending";
 
 function MainPage() {
   return (
-    <main className="text-white min-h-screen flex flex-col justify-center">
-      <div className="flex justify-center p-2">
-        <Trending />
+    <main className="text-white min-h-screen grid justify-center">
+      <div className="flex justify-center m-2">
+        <Landing />
       </div>
+      <div className="flex justify-center m-2">
+        <MainPageCarousel />
+      </div>
+      <div className="flex justify-center m-2">
+        <CoinInfoTab />
+      </div>
+      {/* <div className="flex justify-center p-2">
+        <Trending />
+      </div> */}
       <div className="flex justify-center p-2">
         <CoinList />
       </div>

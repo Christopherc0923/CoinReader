@@ -41,7 +41,7 @@ function Search() {
         </p>
       </section>
       <section className="max-w-7xl mx-auto py-7">
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-3">
           {searchData.map((coin) => (
             <Link
               to={`/coin/${coin.id}`}
@@ -57,8 +57,9 @@ function Search() {
                   {coin.name}
                 </h5>
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                  {coin.symbol} | Rank# {coin.market_cap_rank}
+                  {coin.symbol} | Rank: {coin.market_cap_rank}
                 </p>
+                <p>{coin.price}</p>
               </div>
             </Link>
           ))}
