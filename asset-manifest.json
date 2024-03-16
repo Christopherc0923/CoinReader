@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/CoinReader/static/css/main.247f4585.css",
-    "main.js": "/CoinReader/static/js/main.f930bcfa.js",
+    "main.css": "/CoinReader/static/css/main.5b3c9b6f.css",
+    "main.js": "/CoinReader/static/js/main.14e70133.js",
     "index.html": "/CoinReader/index.html",
-    "main.247f4585.css.map": "/CoinReader/static/css/main.247f4585.css.map",
-    "main.f930bcfa.js.map": "/CoinReader/static/js/main.f930bcfa.js.map"
+    "main.5b3c9b6f.css.map": "/CoinReader/static/css/main.5b3c9b6f.css.map",
+    "main.14e70133.js.map": "/CoinReader/static/js/main.14e70133.js.map"
   },
   "entrypoints": [
-    "static/css/main.247f4585.css",
-    "static/js/main.f930bcfa.js"
+    "static/css/main.5b3c9b6f.css",
+    "static/js/main.14e70133.js"
   ]
 }
