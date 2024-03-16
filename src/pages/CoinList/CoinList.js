@@ -21,8 +21,10 @@ function CoinList() {
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <h1 className="text-3xl font-bold my-4">All Coins</h1>
-      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <h1 className="text-3xl font-bold my-4 text-black dark:text-white">
+        All Coins
+      </h1>
+      <table className="w-full border-gray-50 rounded-lg text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th scope="col" className="px-6 py-3"></th>

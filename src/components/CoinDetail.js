@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Chart from "chart.js/auto";
 import axios from "axios";
+import "chartjs-plugin-zoom";
 
 export default function CoinDetail() {
   const [coinData, setCoinData] = useState([]);
@@ -31,15 +32,15 @@ export default function CoinDetail() {
   const [chart, setChart] = useState(null);
 
   // Price Chart
-  const fetchData = async () => {
+  const fetchData = async (day) => {
     try {
       const response = await axios.get(
-        `https://api.coingecko.com/api/v3/coins/${params.id}/market_chart?api_key=${process.env.REACT_APP_API_KEY}&vs_currency=usd&days=1`
+        `https://api.coingecko.com/api/v3/coins/${params.id}/market_chart?api_key=${process.env.REACT_APP_API_KEY}&vs_currency=usd&days=${day}`
       );
       const { data } = response;
       console.log(response);
       const dates = data.prices.map((price) =>
-        new Date(price[0]).toLocaleDateString()
+        new Date(price[0]).toLocaleString("en-US", { hour12: false })
       );
       const prices = data.prices.map((price) => price[1]);
       console.log(dates);
@@ -68,6 +69,10 @@ export default function CoinDetail() {
             display: true,
             text: "Market Performance",
           },
+          interaction: {
+            mode: "index",
+            intersect: false,
+          },
           elements: {
             point: {
               radius: 3,
@@ -93,6 +98,18 @@ export default function CoinDetail() {
               },
             ],
           },
+          plugins: {
+            zoom: {
+              pan: {
+                enabled: true,
+                mode: "x",
+              },
+              zoom: {
+                enabled: true,
+                mode: "x",
+              },
+            },
+          },
         },
       });
       setChart(newChart);
@@ -100,9 +117,13 @@ export default function CoinDetail() {
       console.error("Error fetching data: ", error);
     }
   };
+  const handleButtonClick = (days) => {
+    const day = days;
+    fetchData(day);
+  };
 
   useEffect(() => {
-    fetchData();
+    fetchData(1);
 
     const refreshChartInterval = setInterval(fetchData, 60000);
 
@@ -115,15 +136,15 @@ export default function CoinDetail() {
       <div>
         <div className="flex flex-row items-center m-0 p-0">
           <img src={coinData.image?.small} className="w-12 h-12 m-2" />
-          <p className="text-black dark:text-white font-bold text-xl">
+          <p className="text-black dark:text-white font-bold text-5xl mr-2">
             {coinData.localization?.en}
           </p>
-          <p className="text-grey font-bold text-base">{coinData.symbol}</p>
+          <p className="text-grey font-bold text-md">{coinData.symbol}</p>
         </div>
 
         <div className="flex flex-row items-center justify-start m-0 p-0">
-          <p className="text-black dark:text-white font-bold">
-            ${coinData.market_data?.current_price?.usd}
+          <p className="text-black dark:text-white font-semibold mr-2 text-3xl">
+            ${coinData.market_data?.current_price?.usd?.toLocaleString()}
           </p>
           <p
             className={`${
@@ -131,7 +152,7 @@ export default function CoinDetail() {
                 ?.usd >= 0
                 ? "text-green-400"
                 : "text-red-400"
-            } font-bold`}
+            } font-semibold`}
           >
             {coinData.market_data?.price_change_percentage_1h_in_currency?.usd.toFixed(
               2
@@ -141,11 +162,12 @@ export default function CoinDetail() {
         </div>
 
         <div className="flex flex-row items-center justify-start m-0 p-0">
-          <p className="text-black dark:text-white font-bold">
-            ${coinData.market_data?.market_cap?.usd?.toLocaleString()}
+          <p className="text-black text-lg dark:text-white font-bold mr-2">
+            Market Cap: $
+            {coinData.market_data?.market_cap?.usd?.toLocaleString()}
           </p>
           {coinData.market_cap_rank ? (
-            <p className="text-grey font-bold">#{coinData.market_cap_rank}</p>
+            <p className=" font-bold">#{coinData.market_cap_rank}</p>
           ) : (
             <p> </p>
           )}
@@ -155,6 +177,37 @@ export default function CoinDetail() {
       {/* Price Graph */}
       <div className="container">
         <canvas className="w-screen" id="myChart"></canvas>
+      </div>
+
+      <div className="flex justify-end">
+        <button
+          onClick={() => handleButtonClick(1)}
+          type="button"
+          class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white"
+        >
+          Day
+        </button>
+        <button
+          onClick={() => handleButtonClick(7)}
+          type="button"
+          class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white"
+        >
+          Week
+        </button>
+        <button
+          onClick={() => handleButtonClick(30)}
+          type="button"
+          class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-l border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white"
+        >
+          Month
+        </button>
+        <button
+          onClick={() => handleButtonClick(365)}
+          type="button"
+          class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white"
+        >
+          Year
+        </button>
       </div>
 
       {/* Information Table*/}
@@ -336,7 +389,7 @@ export default function CoinDetail() {
         <p
           className="text-justify"
           dangerouslySetInnerHTML={{
-            __html: "&nbsp" + coinData.description?.en,
+            __html: "&nbsp" + "&nbsp" + coinData.description?.en,
           }}
         />
       </div>

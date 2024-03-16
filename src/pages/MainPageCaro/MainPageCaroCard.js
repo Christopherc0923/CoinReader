@@ -13,11 +13,16 @@ function MainPageCaroCard({ coinitem }) {
             alt=""
           />
           <div class="flex flex-col justify-between p-4 leading-normal">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              {name} | {symbol}
-            </h5>
+            <div className="flex items-center">
+              <h5 class="mb-2 mx-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                {name}
+              </h5>
+              <h4 class="mb-2 mx-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
+                {symbol}
+              </h4>
+            </div>
             {data.price && !data.price.includes("$0.0<sub") ? (
-              <div className="flex-1 items-center min-w-0 ms-4 ">
+              <div className="flex-1 items-center text-center justify-center min-w-0 ms-4">
                 <p className="text-base font-semibold text-gray-900 dark:text-white">
                   {data.price}
                 </p>

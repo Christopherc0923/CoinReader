@@ -42,7 +42,9 @@ const MainPageCarousel = () => {
 
   return (
     <div className="w-2/3 overflow-hidden relative ">
-      <h1 className="text-3xl font-bold my-4">Trending Coins</h1>
+      <h1 className="text-3xl font-bold my-4 text-black dark:text-white">
+        Trending Coins
+      </h1>
       <div className="flex justify-center">
         {data.map((coin, index) => (
           <div
@@ -58,17 +60,17 @@ const MainPageCarousel = () => {
       </div>
       {/* Buttons the move */}
       <button
-        className="absolute top-1/2 left-0 bg-gray-800 text-white px-2 py-1 rounded"
+        className="absolute top-1/2 left-0 bg-white dark:bg-gray-800 text-white px-2 py-1 rounded"
         onClick={prevSlide}
       >
-        <i className="fas fa-chevron-left"></i>{" "}
+        <i className="fas fa-chevron-left dark:text-white text-black"></i>{" "}
         {/* Font Awesome icon for previous */}
       </button>
       <button
-        className="absolute top-1/2 right-0 bg-gray-800 text-white px-2 py-1 rounded"
+        className="absolute top-1/2 right-0 bg-white dark:bg-gray-800  text-white px-2 py-1 rounded"
         onClick={nextSlide}
       >
-        <i className="fas fa-chevron-right"></i>{" "}
+        <i className="fas fa-chevron-right dark:text-white text-black"></i>{" "}
         {/* Font Awesome icon for next */}
       </button>
     </div>

@@ -29,7 +29,7 @@ function CoinInfoTab() {
       <ul className="text-sm font-medium text-center text-gray-500 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400 my-2">
         <li className={`w-full focus-within:z-10 block`}>
           <button
-            className={`inline-block w-full p-4 border-r border-gray-200 dark:border-gray-700 hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:hover:text-white  ${
+            className={`inline-block w-full p-4 rounded-l-md border-r border-gray-200 dark:border-gray-700 hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:hover:text-white  ${
               selectedTab === "Profile"
                 ? "bg-gray-50 dark:bg-gray-700"
                 : "bg-white hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700"
@@ -65,7 +65,7 @@ function CoinInfoTab() {
         </li>
         <li className={`w-full focus-within:z-10 block`}>
           <button
-            className={`inline-block w-full p-4 border-r border-gray-200 dark:border-gray-700 hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:hover:text-white  ${
+            className={`inline-block w-full p-4 border-r rounded-r-md border-gray-200 dark:border-gray-700 hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:hover:text-white  ${
               selectedTab === "Invoice"
                 ? "bg-gray-50 dark:bg-gray-700"
                 : "bg-white hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700"
@@ -78,7 +78,11 @@ function CoinInfoTab() {
       </ul>
 
       <div id="content">
-        <div className={`${selectedTab === "Profile" ? "block" : "hidden"}`}>
+        <div
+          className={`${
+            selectedTab === "Profile" ? "block" : "hidden"
+          } text-black dark:text-white`}
+        >
           Profile ipsum dolor sit amet, consectetur adipiscing elit. Sed nec
           velit nec orci feugiat ultricies. Vivamus vel gravida metus. Ut
           ultricies, lacus ac convallis tempus, odio libero pellentesque est, eu
@@ -95,7 +99,11 @@ function CoinInfoTab() {
           pretium eros. Vivamus luctus luctus est id tristique. Sed in ante id
           ipsum tincidunt iaculis.
         </div>
-        <div className={`${selectedTab === "Dashboard" ? "block" : "hidden"}`}>
+        <div
+          className={`${
+            selectedTab === "Dashboard" ? "block" : "hidden"
+          } text-black dark:text-white`}
+        >
           Dashboard ipsum dolor sit amet, consectetur adipiscing elit. Sed nec
           velit nec orci feugiat ultricies. Vivamus vel gravida metus. Ut
           ultricies, lacus ac convallis tempus, odio libero pellentesque est, eu
@@ -112,7 +120,11 @@ function CoinInfoTab() {
           pretium eros. Vivamus luctus luctus est id tristique. Sed in ante id
           ipsum tincidunt iaculis.
         </div>
-        <div className={`${selectedTab === "Settings" ? "block" : "hidden"}`}>
+        <div
+          className={`${
+            selectedTab === "Settings" ? "block" : "hidden"
+          } text-black dark:text-white`}
+        >
           Settings ipsum dolor sit amet, consectetur adipiscing elit. Sed nec
           velit nec orci feugiat ultricies. Vivamus vel gravida metus. Ut
           ultricies, lacus ac convallis tempus, odio libero pellentesque est, eu
@@ -129,7 +141,11 @@ function CoinInfoTab() {
           pretium eros. Vivamus luctus luctus est id tristique. Sed in ante id
           ipsum tincidunt iaculis.
         </div>
-        <div className={`${selectedTab === "Invoice" ? "block" : "hidden"}`}>
+        <div
+          className={`${
+            selectedTab === "Invoice" ? "block" : "hidden"
+          } text-black dark:text-white`}
+        >
           Invoice ipsum dolor sit amet, consectetur adipiscing elit. Sed nec
           velit nec orci feugiat ultricies. Vivamus vel gravida metus. Ut
           ultricies, lacus ac convallis tempus, odio libero pellentesque est, eu
